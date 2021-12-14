@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid system</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 100px auto;
+        grid-template-rows: 75px auto 200px;
+        background-color: #fff;
+        color: #444;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .item {
+        border-radius: 5px;
+        font-size: 24px;
+        padding: 10px;
+      }
+
+      .header {
+        background-color: aqua;
+      }
+      .sidenav {
+        background-color: bisque;
+      }
+      .footer {
+        background-color: cadetblue;
+      }
+
+      .header,
+      .footer {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item header">Header</div>
+      <div class="item sidenav">Sidenav</div>
+      <div class="item content">Content</div>
+      <div class="item footer">Footer</div>
+    </div>
+  </body>
+</html>

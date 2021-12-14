@@ -5,21 +5,21 @@ body {
 .container {
   width: 100vw;
   height: 100vh;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .title {
   color: rgb(197, 74, 2);
 }
 .container .menu {
-  position: absolute;
-  width: 29%;
+  width: 25%;
   max-width: 334px;
   height: 100%;
   padding: 50px;
   background-color: rgb(251, 168, 73);
   border-right: solid 2px rgb(87, 73, 61);
-  text-align-last: center;
+  text-align: center;
 }
 .container .menu a.menu-entry {
   display: block;
@@ -32,7 +32,7 @@ body {
 }
 
 .container .menu .profile-photo {
-  text-align-last: center;
+  text-align: center;
   margin-bottom: 50px;
 }
 .container .menu .profile-photo img {
@@ -52,7 +52,6 @@ body {
   width: 75%;
   height: 100%;
   overflow-y: auto;
-  margin-left: 25%;
 }
 .content section {
   width: 90%;
@@ -70,4 +69,37 @@ body {
   text-decoration: underline;
   padding-top: 50px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .container .menu {
+    height: 250px;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 5px;
+  }
+  .container .content {
+    width: 100%;
+    padding: 5px;
+    margin-left: 0;
+  }
+  .content section {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .container .menu a.menu-entry {
+    display: none;
+  }
+
+  .contacts {
+    display: none;
+  }
+
+  .container .menu .profile-photo img {
+    width: 150px;
+  }
 }
