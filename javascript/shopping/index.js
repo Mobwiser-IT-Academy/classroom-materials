@@ -67,11 +67,28 @@ function listProducts() {
   document.querySelector("#products-container").innerHTML = productsHtml;
 }
 
+/**
+ * [{id: 1, qtd: 2}, {id: 2, qtd: 5}, {id: 4, qtd: 10}]
+ *
+ * addProduct(3, 1)
+ * LOOP:
+ *  > 1 FALSE
+ *  > 2 FALSE
+ *
+ * ADD_NEW_PRODUCT
+ *
+ * addProduct(2, 1)
+ * LOOP:
+ *  > 1 FALSE
+ *  > 2 TRUE => UPDATE QTD (6) => RETURN
+ *
+ * ADD_NEW_PRODUCT
+ */
 function addProduct(id, qtd) {
-  console.log("adding product", id, qtd);
-  shoppingCart.push({ id, qtd });
-  console.log(shoppingCart);
-  document.querySelector("#shopping-cart-size").innerHTML = shoppingCart.length;
+  // console.log("adding product", id, qtd);
+  // shoppingCart.push({ id, qtd });
+  // console.log(shoppingCart);
+  // document.querySelector("#shopping-cart-size").innerHTML = shoppingCart.length;
 
   /**
    * 1 - Ir procurar o produto ao carrinho compras (id)
@@ -80,6 +97,14 @@ function addProduct(id, qtd) {
    * 2.2 - Caso contrário, fazemos do novo produto com quantidade (qtd)
    * 3 - Atualizamos tamanho do carrinho compras com quantidade total de todos os produtos (criar uma função especifica)
    */
+
+  for (let i = 0; i < shoppingCart.length; i++) {
+    if (shoppingCart[i].id === id) {
+      shoppingCart[i].qtd += qtd;
+      return;
+    }
+  }
+  shoppingCart.push({ id, qtd });
 }
 
 function removeProduct(id, qtd) {
@@ -89,6 +114,8 @@ function removeProduct(id, qtd) {
    * 2.1 - Retiro a quantidade ou removo do carrinho se a quantidade for igual ou superior ao que tiver no carrinho
    * 2.2 - Caso contrário, não faço nada
    * 3 - Atualizamos tamanho do carrinho compras com quantidade total de todos os produtos (criar uma função especifica)
+   *
+   * HINT: array.splice(i,1)
    */
 }
 
@@ -101,3 +128,8 @@ addProduct(1, 2);
 addProduct(3, 2);
 addProduct(2, 1);
 addProduct(5, 10);
+removeProduct(1, 4);
+removeProduct(3, 2);
+removeProduct(5, 15);
+
+console.log(shoppingCart);
