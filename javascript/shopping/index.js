@@ -101,10 +101,12 @@ function addProduct(id, qtd) {
   for (let i = 0; i < shoppingCart.length; i++) {
     if (shoppingCart[i].id === id) {
       shoppingCart[i].qtd += qtd;
+      refreshShoppingCartHtml();
       return;
     }
   }
   shoppingCart.push({ id, qtd });
+  refreshShoppingCartHtml();
 }
 
 function removeProduct(id, qtd) {
@@ -117,6 +119,26 @@ function removeProduct(id, qtd) {
    *
    * HINT: array.splice(i,1)
    */
+
+  for (let i = 0; i < shoppingCart.length; i++) {
+    if (shoppingCart[i].id === id) {
+      shoppingCart[i].qtd -= qtd;
+      if (shoppingCart[i].qtd <= 0) {
+        shoppingCart.splice(i, 1);
+      }
+      refreshShoppingCartHtml();
+      return;
+    }
+  }
+  refreshShoppingCartHtml();
+}
+
+function refreshShoppingCartHtml() {
+  let size = 0;
+  for (let i = 0; i < shoppingCart.length; i++) {
+    size += shoppingCart[i].qtd;
+  }
+  document.querySelector("#shopping-cart-size").innerHTML = size;
 }
 
 console.log("load index.js");
@@ -131,5 +153,18 @@ addProduct(5, 10);
 removeProduct(1, 4);
 removeProduct(3, 2);
 removeProduct(5, 15);
+addProduct(5, 10);
+
+/**
+ * [{1,3}] (size=3)
+ * [{1,5}] (size=5)
+ * [{1,5}, {3,2}] (size=7)
+ * [{1,5}, {3,2}, {2,1}] (size=8)
+ * [{1,5}, {3,2}, {2,1}, {5,10}] (size=18)
+ * [{1,1}, {3,2}, {2,1}, {5,10}] (size=14)
+ * [{1,1}, {2,1}, {5,10}] (size=12)
+ * [{1,1}, {2,1}] (size=2)
+ * [{1,1}, {2,1}, {5,10}] (size=12)
+ */
 
 console.log(shoppingCart);
