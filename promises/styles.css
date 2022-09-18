@@ -1,0 +1,15 @@
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.users-list .list-user {
+  list-style: none;
+  border: solid 1px #ccc;
+  padding: 2em;
+}
+.user-container {
+  display: flex;
+  flex-direction: column;
+  width: 10em;
+}
