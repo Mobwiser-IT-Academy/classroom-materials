@@ -1,0 +1,23 @@
+.todo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  border: solid 2px #6f6f6f;
+  margin-bottom: 1rem;
+}
+
+.todo-container.done {
+  text-decoration: line-through;
+  background-color: rgba(204, 248, 189, 0.8);
+}
+
+.todo-button {
+  border: solid 2px #6f6f6f;
+  background-color: #ffffff;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+}
+.done .todo-button {
+  display: none;
+}
