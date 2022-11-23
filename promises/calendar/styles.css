@@ -1,0 +1,86 @@
+h1 {
+    text-align: center;
+  }
+  
+.holidays-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+  .holidays-list .list-holiday {
+    list-style: none;
+    border: solid 1px #ccc;
+    padding: 2em;
+}
+.holiday-container {
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+}
+.holiday-container {
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+}
+
+.color-green {
+    color: green;
+}
+.color-grey {
+    color: grey;
+}
+
+span.day {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.calendars-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.calendar-list .list-month {
+    list-style: none;
+    border: solid 1px #ccc;
+}
+
+/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    color: green;
+    border: solid 1px green;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
