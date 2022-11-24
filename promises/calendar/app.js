@@ -51,62 +51,53 @@ class Calendar {
   }
 }
 
-function fetchHolidays() {
-  let year = document.querySelector("span.year").innerHTML;
+function fetchHolidays(year) {
     fetch(`https://date.nager.at/api/v2/publicholidays/${year}/PT`)
       .then((response) => response.json())
-      .then((holidays) => renderHolidays(holidays));
+      .then((holidaysJSON) => renderHolidays(holidaysJSON));
   }
   
-function renderHolidays(holidays) {
-  let html = "";
-  holidaysArray = [];
-  for (let holiday of holidays) {
+function renderHolidays(holidaysJSON) {
+  const holidays = [];
+  for (let holiday of holidaysJSON) {
     if(holiday.global) {
-      holidaysArray.push(new Holiday(holiday.date, holiday.name));
-      //  html += `<li class="list-holiday">
-      //    <article class="holiday-container ${Date.now() < new Date(holiday.date) ? 'color-green' : 'color-grey'}">
-      //      <h2>${holiday.name}</h2>
-      //      <p>${holiday.date}</p>
-      //    </article>
-      // </li>`;
+      holidays.push(new Holiday(holiday.date, holiday.name));
     }
   }
-  document.querySelector(".holidays-list").innerHTML = html;
   
-  renderCalendar(holidaysArray);
+  renderCalendar(holidays);
 }
 
 function changeYear(sum){
   let year = document.querySelector("span.year").innerHTML;
   year = parseInt(year) + sum;
   document.querySelector("span.year").innerHTML = year;
-  fetchHolidays();
+  fetchHolidays(year);
 }
 
-function year() {
+function currentYear() {
 	let year = new Date().getFullYear();
   document.querySelector("span.year").innerHTML = year;
   
-  fetchHolidays();
+  fetchHolidays(year);
 }
 
-function renderCalendar(holidaysArray) {
+function renderCalendar(holidays) {
   let calendar = new Calendar();
   let html = "";
   for (let month of calendar.months) {
     html += `<li class="list-month">
           <h2>${month.name}</h2>
-          ${renderMonth(month, holidaysArray)}
+          ${renderMonth(month, holidays)}
       </li>`;
     }
   document.querySelector(".calendar-list").innerHTML = html;
 }
 
-function renderMonth(month, holidaysArray){
+function renderMonth(month, holidays){
   let html = '';
   for(let i = 1; i <= month.days; i++) {
-    let holiday = month.getHoliday(i ,holidaysArray);
+    let holiday = month.getHoliday(i ,holidays);
     html += `<span class="day ${holiday ? 'holiday tooltip' : ''}">
               ${i}
               ${holiday ? `<span class="tooltiptext">${holiday.name}</span>` : ''}
@@ -114,5 +105,3 @@ function renderMonth(month, holidaysArray){
   }
   return `<p>${html}</p>`;
 }
-  
-fetchHolidays();

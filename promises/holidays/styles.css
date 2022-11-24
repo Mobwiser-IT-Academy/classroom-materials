@@ -1,0 +1,31 @@
+h1 {
+    text-align: center;
+  }
+  
+.holidays-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+  .holidays-list .list-holiday {
+    list-style: none;
+    border: solid 1px #ccc;
+    padding: 2em;
+}
+.holiday-container {
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+}
+.holiday-container {
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+}
+
+.color-green {
+    color: green;
+}
+.color-grey {
+    color: grey;
+}
